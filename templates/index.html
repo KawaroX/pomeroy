@@ -4,75 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomeroy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2980b9;
-            --background-color: #f6f8fa;
-            --text-color: #2c3e50;
-            --accent-color: #e74c3c;
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f7fa;
+            --text-color: #333;
+            --border-color: #e0e0e0;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--background-color);
+            background-color: #fff;
             margin: 0;
             padding: 0;
-            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
             width: 90%;
-            max-width: 800px;
-            background: white;
+            max-width: 600px;
+            background: #fff;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(52, 152, 219, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 10s infinite linear;
-            pointer-events: none;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-50%) rotate(45deg); }
-            100% { transform: translateX(50%) rotate(45deg); }
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         h1 {
             color: var(--primary-color);
             text-align: center;
-            font-size: 2.5em;
+            font-size: 2em;
+            font-weight: 600;
             margin-bottom: 30px;
-            position: relative;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent-color);
         }
 
         form {
@@ -82,41 +50,50 @@
             margin-bottom: 30px;
         }
 
-        input[type="file"] {
-            display: none;
-        }
-
-        .file-upload-label {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            cursor: pointer;
+        .file-upload-wrapper {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
             transition: all 0.3s ease;
-            margin-bottom: 20px;
         }
 
-        .file-upload-label:hover {
-            background-color: #2471a3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        .file-upload-wrapper:hover {
+            border-color: var(--primary-color);
+        }
+
+        input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-text {
+            color: var(--text-color);
+            font-size: 1em;
         }
 
         input[type="submit"] {
             background-color: var(--primary-color);
             color: white;
-            padding: 15px 30px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 50px;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 1em;
+            margin-top: 20px;
         }
 
         input[type="submit"]:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            background-color: #3a7bc8;
         }
 
         #resultSection {
@@ -136,30 +113,30 @@
             height: 300px;
             white-space: pre-wrap;
             word-wrap: break-word;
-            overflow-y: scroll;
-            background-color: #ecf0f1;
-            border: 1px solid #bdc3c7;
+            overflow-y: auto;
+            background-color: var(--secondary-color);
+            border: 1px solid var(--border-color);
             padding: 20px;
-            border-radius: 10px;
-            font-family: 'Fira Code', monospace;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
             font-size: 0.9em;
             box-sizing: border-box;
         }
 
         #copyButton {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 0.9em;
         }
 
         #copyButton:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            background-color: var(--primary-color);
+            color: white;
         }
     </style>
 </head>
@@ -167,16 +144,16 @@
     <div class="container">
         <h1>Pomeroy 推送生成</h1>
         <form method="post" enctype="multipart/form-data">
-            <label for="file-upload" class="file-upload-label">
-                选择文件（.docx）
-            </label>
-            <input id="file-upload" type="file" name="file" accept=".txt,.docx">
-            <input type="submit" value="提交">
+            <div class="file-upload-wrapper">
+                <input id="file-upload" type="file" name="file" accept=".txt,.docx">
+                <span class="file-upload-text">选择或拖动文件（.docx）</span>
+            </div>
+            <input type="submit" value="解析文档">
         </form>
         <div id="resultSection">
             <div class="result-header">
                 <h2>解析结果</h2>
-                <button id="copyButton" onclick="copyToClipboard()">复制到剪贴板</button>
+                <button id="copyButton" onclick="copyToClipboard()">复制</button>
             </div>
             <div id="htmlContent"></div>
         </div>
@@ -198,19 +175,17 @@
     };
 
     document.getElementById('file-upload').onchange = function() {
-        document.querySelector('.file-upload-label').textContent =
-            this.files[0] ? this.files[0].name : 'Choose File';
+        document.querySelector('.file-upload-text').textContent =
+            this.files[0] ? this.files[0].name : 'Choose a file or drag it here';
     };
 
     function copyToClipboard() {
         var htmlContent = document.getElementById('htmlContent');
-        var textArea = document.createElement("textarea");
-        textArea.value = htmlContent.textContent;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("Copy");
-        textArea.remove();
-        alert("HTML copied to clipboard!");
+        navigator.clipboard.writeText(htmlContent.textContent).then(() => {
+            alert("HTML copied to clipboard!");
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
     }
     </script>
 </body>
