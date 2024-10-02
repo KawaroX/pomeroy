@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from paper_parser import PaperParser
 import os
 from werkzeug.utils import secure_filename
@@ -27,8 +27,8 @@ def upload_file():
             os.remove(file_path)  # 删除临时文件
             if paper_info:
                 html_content = parser.generate_html(paper_info)
-                return render_template('result.html', html_content=html_content)
-    return render_template('upload.html')
+                return html_content
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
