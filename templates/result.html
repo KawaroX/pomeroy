@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <title>Parsed HTML Result</title>
+    <style>
+        #htmlContent {
+            width: 100%;
+            height: 300px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-y: scroll;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Parsed HTML Result</h1>
+    <div id="htmlContent">{{ html_content | e }}</div>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+
+    <script>
+    function copyToClipboard() {
+        var htmlContent = document.getElementById('htmlContent');
+        var textArea = document.createElement("textarea");
+        textArea.value = htmlContent.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+        alert("HTML copied to clipboard!");
+    }
+    </script>
+</body>
+</html>
